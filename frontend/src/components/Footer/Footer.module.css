@@ -1,0 +1,13 @@
+.footer {
+    width: 100vw;
+    background-color: rgba(46, 0, 82, 1);
+    position: absolute;
+    bottom: 0;
+    font-family: Roboto;
+    font-size: 1vw;
+    font-weight: 500;
+    letter-spacing: 0em;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+    padding: 1vh 0 1vh 0;
+}

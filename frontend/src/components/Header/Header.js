@@ -3,7 +3,7 @@ import phoneIcon from "../../assets/phoneIcon.svg";
 import musicIcon from "../../assets/musicIcon.svg";
 import { useState } from "react";
 const Header = () => {
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
   return (
     <header className={style.desktopHeader}>
       <div className={style.leftBox}>
@@ -15,7 +15,13 @@ const Header = () => {
       </div>
       <div className={style.rightBox}>
         {login ? (
-          <button>Logout</button>
+          <button
+            onClick={() => {
+              setLogin(false);
+            }}
+          >
+            Logout
+          </button>
         ) : (
           <>
             <a href="#login">Login</a> | <a href="#signup">Signup</a>

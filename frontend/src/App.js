@@ -1,8 +1,8 @@
-import Header from "../src/components/Header/Header";
+import Signup from "./components/Signup/Signup";
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Signup />
     </div>
   );
 }

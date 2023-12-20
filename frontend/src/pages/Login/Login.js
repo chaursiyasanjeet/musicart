@@ -1,10 +1,12 @@
-import style from "./Signup.module.css";
+import style from "./Login.module.css";
 import musicIcon from "../../assets/musicIcon.svg";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const redirect = useNavigate();
   const [user, setUser] = useState({ email: "", password: "" });
 
   const validateForm = (email, password) => {
@@ -82,9 +84,18 @@ const Login = () => {
           <span>New to Musicart?</span>
           <div></div>
         </div>
-        <button className={style.button}>Create your Musicart account</button>
+        <button
+          className={style.button}
+          onClick={() => {
+            redirect("/signup");
+          }}
+        >
+          Create your Musicart account
+        </button>
       </div>
-      <Footer />
+      <div className={style.footer}>
+        <Footer />
+      </div>
       <ToastContainer
         position="top-right"
         autoClose={5000}

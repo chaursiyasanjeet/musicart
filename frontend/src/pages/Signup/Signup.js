@@ -1,7 +1,7 @@
 import style from "./Signup.module.css";
 import musicIcon from "../../assets/musicIcon.svg";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
 const Signup = () => {
@@ -121,7 +121,7 @@ const Signup = () => {
         </div>
         <aside className={style.bottomPart}>
           <span>Already have an account?</span>
-          <a href="/login">Sign In</a>
+          <a href="/signin">Sign In</a>
         </aside>
       </div>
       <Footer />

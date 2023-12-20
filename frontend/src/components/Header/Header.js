@@ -24,7 +24,7 @@ const Header = () => {
           </button>
         ) : (
           <>
-            <a href="#login">Login</a> | <a href="#signup">Signup</a>
+            <a href="/signin">Login</a> | <a href="/signup">Signup</a>
           </>
         )}
       </div>

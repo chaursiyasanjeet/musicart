@@ -12,6 +12,7 @@ import FilledList from "../../assets/filledList.svg";
 import headphone from "../../assets/headphone.png";
 import imgCart from "../../assets/imgCart.svg";
 import { useState } from "react";
+import MobileHome from "./MobileHome";
 
 const Home = () => {
   const [view, setView] = useState("list");
@@ -126,6 +127,7 @@ const Home = () => {
           <section className={style.productContainerGrid}>
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -136,8 +138,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -148,8 +152,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -160,8 +166,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -172,8 +180,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -184,8 +194,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -196,8 +208,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -208,8 +222,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -220,8 +236,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -232,8 +250,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -244,8 +264,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -256,8 +278,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -268,8 +292,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -280,8 +306,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -292,8 +320,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -304,8 +334,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -316,8 +348,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -328,8 +362,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -340,8 +376,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -352,8 +390,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -364,8 +404,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -376,8 +418,10 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -388,8 +432,38 @@ const Home = () => {
                 </span>
               </div>
             </div>
+
             <div>
               <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
+                <img src={headphone} alt="headphoneIcon" />
+              </div>
+              <div className={style.productSpec}>
+                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
+                <span className={style.productPrice}>Price-RS 3,000</span>
+                <span className={style.productType}>
+                  Blue | On-ear headphpne
+                </span>
+              </div>
+            </div>
+
+            <div>
+              <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
+                <img src={headphone} alt="headphoneIcon" />
+              </div>
+              <div className={style.productSpec}>
+                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
+                <span className={style.productPrice}>Price-RS 3,000</span>
+                <span className={style.productType}>
+                  Blue | On-ear headphpne
+                </span>
+              </div>
+            </div>
+
+            <div>
+              <div className={style.productImg}>
+                <img src={imgCart} alt="cartImg" />
                 <img src={headphone} alt="headphoneIcon" />
               </div>
               <div className={style.productSpec}>
@@ -524,6 +598,7 @@ const Home = () => {
       <section className={style.footer}>
         <Footer />
       </section>
+      <MobileHome />
     </>
   );
 };

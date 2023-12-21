@@ -255,6 +255,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.productImg img:first-child {
+    height: 25%;
+    position: absolute;
+    bottom: 0;
+    left: 44%;
+    cursor: pointer
 }
 
 .productImg>img {
@@ -368,4 +377,18 @@
 
 .footer {
     margin-top: 15vh;
+}
+
+@media (max-width:550px) {
+    .container {
+        display: none;
+    }
+
+    .footer {
+        display: none;
+    }
+
+    .header {
+        display: none;
+    }
 }

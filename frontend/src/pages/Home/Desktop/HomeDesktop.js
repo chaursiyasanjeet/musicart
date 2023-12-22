@@ -12,7 +12,6 @@ import FilledList from "../../../assets/filledList.svg";
 import headphone from "../../../assets/headphone.png";
 import imgCart from "../../../assets/imgCart.svg";
 import { useState } from "react";
-import MobileHome from "../Mobile/MobileHome";
 
 const Home = () => {
   const [view, setView] = useState("list");
@@ -597,7 +596,6 @@ const Home = () => {
       <section className={style.footer}>
         <Footer />
       </section>
-      <MobileHome />
     </>
   );
 };

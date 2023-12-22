@@ -196,12 +196,8 @@
     text-align: left;
 }
 
-@media (min-width:550px) {
+@media (min-width:600px) {
     .container {
-        display: none;
-    }
-
-    .searchBoxHeader {
         display: none;
     }
 }

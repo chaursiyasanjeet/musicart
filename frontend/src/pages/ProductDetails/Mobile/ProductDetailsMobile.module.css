@@ -1,11 +1,164 @@
 .container {
     width: 100vw;
-    height: 100vh;
     padding: 0 3vw 0 3vw;
 }
 
+.backButton {
+    margin-top: 3vh;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: (255, 255, 255, 1);
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.33);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
 
-@media (min-width:550px) {
+.backButton>img {
+    height: 50%;
+}
+
+.buyNowButton {
+    margin-top: 3vh;
+    width: 100%;
+    height: 6vh;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(255, 184, 0, 1);
+    color: rgba(0, 0, 0, 1);
+    font-family: Roboto;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0em;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* will modifie it later */
+.productImg {
+    margin-top: 4vh;
+    width: 100%;
+    display: flex;
+    overflow: scroll;
+    gap: 2vh;
+}
+
+.productImg>img {
+    border: 2px solid rgba(255, 184, 0, 1);
+    border-radius: 10px;
+    width: 100vw;
+}
+
+/* will modifie it later till here*/
+.productTitle {
+    margin-top: 5vh;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0em;
+    color: rgba(0, 0, 0, 1);
+}
+
+.ratingBox {
+    margin-top: 1vh;
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+}
+
+.ratingBox>span {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0em;
+    margin-left: 1vh;
+}
+
+.ratingBox>img {
+    height: 2.5vh;
+}
+
+.productDescriptionHeader {
+    margin-top: 1.2vh;
+    font-family: Roboto;
+    font-size: 1.3rem;
+    font-weight: 550;
+    letter-spacing: 0em;
+    color: rgba(0, 0, 0, 1)
+}
+
+.price {
+    margin-top: 1vh;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0em;
+    display: block;
+}
+
+.colorType {
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0em;
+}
+
+.aboutProduct {
+    margin-top: 1.5vh;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0em;
+}
+
+.aboutProduct>ul {
+    margin-top: 0.5vh;
+    padding-left: 10vw;
+}
+
+.availableAndBrand {
+    margin-top: 2vh;
+}
+
+.availableAndBrand>div>span:first-child {
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0em;
+}
+
+.availableAndBrand>div>span:last-child {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.buttons {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1.5vh;
+    margin-bottom: 13vh;
+}
+
+.buttons>button {
+    padding: 2%;
+    height: 6vh;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 214, 0, 1);
+    color: rgba(0, 0, 0, 1);
+    font-family: Roboto;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.buttons>button:last-child {
+    background-color: rgba(255, 184, 0, 1);
+}
+
+@media (min-width:600px) {
     .container {
         display: none;
     }

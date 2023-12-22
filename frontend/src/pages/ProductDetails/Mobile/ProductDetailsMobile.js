@@ -6,15 +6,22 @@ import img1 from "../../../assets/img1.png";
 import img2 from "../../../assets/img2.png";
 import img3 from "../../../assets/img3.png";
 import star from "../../../assets/star.svg";
-
+import { useNavigate } from "react-router-dom";
 import backIcon from "../../../assets/backIcon.svg";
 const ProductDetailsMobile = () => {
+  const redirect = useNavigate();
   return (
     <>
       <MobileSearchBar />
       <div className={style.container}>
         <div className={style.backButton}>
-          <img src={backIcon} alt="backArrow" />
+          <img
+            src={backIcon}
+            alt="backArrow"
+            onClick={() => {
+              redirect("/");
+            }}
+          />
         </div>
         <button className={style.buyNowButton}>Buy Now</button>
         <div className={style.productImg}>
@@ -78,7 +85,7 @@ const ProductDetailsMobile = () => {
           </div>
         </div>
       </div>
-      <MobileNavFooter />
+      <MobileNavFooter component={"home"} />
     </>
   );
 };

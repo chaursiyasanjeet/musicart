@@ -6,10 +6,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./MobileNavFooter.module.css";
 
-const MobileNavFooter = () => {
+const MobileNavFooter = (prop) => {
   const redirect = useNavigate();
   const [login, setLogin] = useState(true);
-  const [selected, setSelected] = useState("home");
+  const [selected, setSelected] = useState(prop.component);
   return (
     <div className={style.footerNav}>
       <div onClick={() => setSelected("home")}>

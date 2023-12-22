@@ -210,7 +210,7 @@ const MobileHome = () => {
           </div>
         </section>
       </div>
-      <MobileNavFooter />
+      <MobileNavFooter component={"home"} />
     </>
   );
 };

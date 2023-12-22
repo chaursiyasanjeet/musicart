@@ -8,10 +8,11 @@ import img1 from "../../../assets/img1.png";
 import img2 from "../../../assets/img2.png";
 import img3 from "../../../assets/img3.png";
 import star from "../../../assets/star.svg";
-
+import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 
 const ProductDetailsDesktop = () => {
+  const redirect = useNavigate();
   const imgRef = useRef(null);
   return (
     <>
@@ -31,7 +32,14 @@ const ProductDetailsDesktop = () => {
             <span>0</span>
           </div>
         </section>
-        <button className={style.backToProductBtn}>Back to products</button>
+        <button
+          className={style.backToProductBtn}
+          onClick={() => {
+            redirect("/");
+          }}
+        >
+          Back to products
+        </button>
         <div className={style.productDescriptionHeader}>
           Sony WH-CH720N, Wireless Over-Ear Active Noise Cancellation Headphones
           with Mic, up to 50 Hours Playtime, Multi-Point Connection, App

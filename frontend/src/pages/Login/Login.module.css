@@ -7,6 +7,10 @@
     justify-content: space-evenly;
 }
 
+.container>span {
+    display: none;
+}
+
 .titleDesktop {
     display: flex;
     align-items: center;
@@ -18,17 +22,15 @@
     gap: 1vh;
 }
 
+.titleDesktop>img {
+    height: 10vh;
+}
+
+
 .titleMobile {
     display: none;
 }
 
-.container>span {
-    display: none;
-}
-
-.titleDesktop>img {
-    height: 10vh;
-}
 
 .form {
     width: 40vw;

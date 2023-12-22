@@ -175,7 +175,7 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url('../../assets/dropDown.svg');
+    background-image: url('../../../assets/dropDown.svg');
     background-repeat: no-repeat;
     background-position: right 7% center;
     background-position-y: center;
@@ -219,7 +219,7 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url('../../assets/dropDown.svg');
+    background-image: url('../../../assets/dropDown.svg');
     background-repeat: no-repeat;
     background-position: right 2% center;
     cursor: pointer;

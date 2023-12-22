@@ -1,18 +1,13 @@
-import MobileNavFooter from "../../components/MobileNavFooter/MobileNavFooter";
+import MobileNavFooter from "../../../components/MobileNavFooter/MobileNavFooter";
 import style from "./MobileHome.module.css";
-import searchIcon from "../../assets/search.svg";
-import saleIcon from "../../assets/mobileSale.png";
-import headphone from "../../assets/headphone.png";
+import saleIcon from "../../../assets/mobileSale.png";
+import headphone from "../../../assets/headphone.png";
+import MobileSearchBar from "../../../components/MobileSearchBar/MobileSearchBar";
 
 const MobileHome = () => {
   return (
     <>
-      <section className={style.searchBoxHeader}>
-        <div>
-          <img src={searchIcon} alt="searchIcon" />
-          <input type="text" name="search" placeholder="Search Musicart" />
-        </div>
-      </section>
+      <MobileSearchBar />
       <div className={style.container}>
         <section className={style.saleBanner}>
           <div>

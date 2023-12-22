@@ -75,7 +75,6 @@ const Home = () => {
               <option value="onEarHeadphobe">On-ear headphobe</option>
 
               <option value="overEarHeadphone">Over-ear headphone</option>
-              <img src="../../assets/dropDown.svg" alt="" />
             </select>
 
             <select name="company">

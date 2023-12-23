@@ -14,12 +14,24 @@ const MobileNavFooter = (prop) => {
     <div className={style.footerNav}>
       <div onClick={() => setSelected("home")}>
         {selected === "home" ? <div></div> : ""}
-        <img src={HomeIcon} alt="homeicon" />
+        <img
+          src={HomeIcon}
+          alt="homeicon"
+          onClick={() => {
+            redirect("/");
+          }}
+        />
         <span>Home</span>
       </div>
       <div onClick={() => setSelected("cart")}>
         {selected === "cart" ? <div></div> : ""}
-        <img src={CartIcon} alt="carticon" />
+        <img
+          src={CartIcon}
+          alt="carticon"
+          onClick={() => {
+            redirect("/cart");
+          }}
+        />
         <span>Cart</span>
       </div>
       <div

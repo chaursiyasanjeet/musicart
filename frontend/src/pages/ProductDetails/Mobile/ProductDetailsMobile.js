@@ -7,9 +7,15 @@ import img2 from "../../../assets/img2.png";
 import img3 from "../../../assets/img3.png";
 import star from "../../../assets/star.svg";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 import backIcon from "../../../assets/backIcon.svg";
 const ProductDetailsMobile = () => {
   const redirect = useNavigate();
+  const handleImgChange = (e) => {
+    e.target.style.left = "-100%";
+    console.log(e.target);
+  };
+  const imgRef = useRef(null);
   return (
     <>
       <Header />
@@ -24,7 +30,7 @@ const ProductDetailsMobile = () => {
           />
         </div>
         <button className={style.buyNowButton}>Buy Now</button>
-        <div className={style.productImg}>
+        <div className={style.productImg} onScroll={handleImgChange}>
           <img src={Headphone} alt="headphoneImg" />
           <img src={img1} alt="headphoneImg" />
           <img src={img2} alt="headphoneImg" />

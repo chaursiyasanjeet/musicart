@@ -1,5 +1,5 @@
 import style from "./CartMobile.module.css";
-import MobileSearchBar from "../../../components/MobileSearchBar/MobileSearchBar";
+import Header from "../../../components/Header/Header";
 import MobileNavFooter from "../../../components/MobileNavFooter/MobileNavFooter";
 import { useNavigate } from "react-router-dom";
 import backIcon from "../../../assets/backIcon.svg";
@@ -9,7 +9,7 @@ const CartMobile = () => {
   const redirect = useNavigate();
   return (
     <>
-      <MobileSearchBar />
+      <Header />
       <div className={style.container}>
         <div className={style.backButton}>
           <img

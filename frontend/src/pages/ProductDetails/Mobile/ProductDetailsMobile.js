@@ -1,6 +1,6 @@
 import style from "./ProductDetailsMobile.module.css";
 import MobileNavFooter from "../../../components/MobileNavFooter/MobileNavFooter";
-import MobileSearchBar from "../../../components/MobileSearchBar/MobileSearchBar";
+import Header from "../../../components/Header/Header";
 import Headphone from "../../../assets/headphone.png";
 import img1 from "../../../assets/img1.png";
 import img2 from "../../../assets/img2.png";
@@ -12,7 +12,7 @@ const ProductDetailsMobile = () => {
   const redirect = useNavigate();
   return (
     <>
-      <MobileSearchBar />
+      <Header />
       <div className={style.container}>
         <div className={style.backButton}>
           <img

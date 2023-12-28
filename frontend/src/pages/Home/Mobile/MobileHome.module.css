@@ -153,12 +153,15 @@
 
 .productContainer>div {
     width: calc(50% - 10px);
+    padding-bottom: 3vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1vh;
     cursor: pointer;
+    border: 2px solid rgba(206, 206, 206, 1);
+    border-radius: 5px;
 }
 
 .productImg {
@@ -183,6 +186,7 @@
     font-family: Roboto;
     font-size: 1rem;
     font-weight: 600;
+    line-height: 3.5vh;
     letter-spacing: 0em;
     color: rgba(0, 0, 0, 1)
 }
@@ -190,8 +194,9 @@
 .productPrice,
 .productType {
     font-family: Roboto;
+    font-weight: 600;
     font-size: 0.8rem;
-    font-weight: 500;
+    line-height: 3vh;
     letter-spacing: 0em;
     text-align: left;
 }

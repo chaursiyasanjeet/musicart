@@ -12,6 +12,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 dotenv.config();
 
+const auth = require("./routes/auth");
+
 app.get("/health", (req, res) => {
   res.status(200).json({
     service: "job-listing-server",
@@ -19,6 +21,8 @@ app.get("/health", (req, res) => {
     time: new Date(),
   });
 });
+
+app.use(auth);
 
 //error handler
 app.use((err, req, res, next) => {

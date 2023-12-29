@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 dotenv.config();
 
 const auth = require("./routes/auth");
+const product = require("./routes/product");
 
 app.get("/health", (req, res) => {
   res.status(200).json({
@@ -23,6 +24,7 @@ app.get("/health", (req, res) => {
 });
 
 app.use(auth);
+app.use(product);
 
 //error handler
 app.use((err, req, res, next) => {

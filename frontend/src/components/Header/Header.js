@@ -3,7 +3,9 @@ import phoneIcon from "../../assets/phoneIcon.svg";
 import musicIcon from "../../assets/musicIcon.svg";
 import { useState } from "react";
 const Header = () => {
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(
+    localStorage.getItem("musicArtToken") ? true : false
+  );
   return (
     <header className={style.desktopHeader}>
       <div className={style.leftBox}>
@@ -18,6 +20,7 @@ const Header = () => {
           <button
             onClick={() => {
               setLogin(false);
+              localStorage.removeItem("musicArtToken");
             }}
           >
             Logout

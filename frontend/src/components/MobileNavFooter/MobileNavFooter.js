@@ -8,7 +8,9 @@ import style from "./MobileNavFooter.module.css";
 
 const MobileNavFooter = (prop) => {
   const redirect = useNavigate();
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(
+    localStorage.getItem("musicArtToken") ? true : false
+  );
   const [selected, setSelected] = useState(prop.component);
   return (
     <div className={style.footerNav}>
@@ -38,6 +40,9 @@ const MobileNavFooter = (prop) => {
         onClick={() => {
           if (!login) {
             redirect("/signin");
+          }
+          if (login) {
+            localStorage.removeItem("musicArtToken");
           }
         }}
       >

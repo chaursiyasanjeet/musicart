@@ -4,7 +4,10 @@ import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
+import { register, login } from "../../apis/auth";
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
+  const redirect = useNavigate();
   const [user, setUser] = useState({
     name: "",
     mobile: "",
@@ -43,7 +46,7 @@ const Signup = () => {
     return true;
   };
 
-  const handleSumbit = (e) => {
+  const handleSumbit = async (e) => {
     e.preventDefault();
     const validate = validateForm(
       user.name,
@@ -52,7 +55,24 @@ const Signup = () => {
       user.password
     );
     if (validate) {
-      toast.success("Successfully Signed In");
+      const result = await register(
+        user.name,
+        user.email,
+        user.mobile,
+        user.password
+      );
+
+      if (result.status === "SUCCESS") {
+        const result = await login(user.email, user.password);
+        localStorage.setItem("musicArtToken", result.jwtToken);
+        toast.success("Registered Successfully");
+        setTimeout(() => {
+          redirect("/");
+        }, 2000);
+      } else {
+        console.log(result);
+        toast.error(result.message);
+      }
     }
   };
   return (

@@ -26,13 +26,18 @@ app.get("/health", (req, res) => {
 app.use(auth);
 app.use(product);
 
+//error handler middleware
+app.use((req, res, next) => {
+  const err = new Error("page not found");
+  err.status = 404;
+  next(err);
+});
+
 //error handler
 app.use((err, req, res, next) => {
   res.status(err.status || 500).json({
-    error: {
-      status: err.status || 500,
-      message: err.message,
-    },
+    status: "FAILED",
+    message: err.message,
   });
 });
 

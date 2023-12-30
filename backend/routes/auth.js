@@ -10,10 +10,11 @@ router.post("/register", async (req, res) => {
 
     //if anything is empty
     if (!name || !email || !mobile || !password) {
-      return res.status(400).json({
+      res.status(400).json({
         status: "FAILED",
         message: "Epmty fields",
       });
+      return;
     }
 
     //checking if already exist
@@ -22,10 +23,11 @@ router.post("/register", async (req, res) => {
 
     //if user already exist
     if (existingEmail || existingMobile) {
-      return res.status(409).json({
-        status: "failed",
-        mesage: "user already exist",
+      res.status(409).json({
+        status: "FAILED",
+        message: "user already exist",
       });
+      return;
     }
 
     //encrypting the password
@@ -43,9 +45,10 @@ router.post("/register", async (req, res) => {
       status: "SUCCESS",
       message: "User registered successfully",
     });
+    return;
   } catch (error) {
-    const err = new Error("Something went wrong! Please try after some time.");
-    next(err);
+    console.log(error);
+    res.status(500).json({ status: "FAILED", message: "Server error" });
   }
 });
 
@@ -58,6 +61,7 @@ router.post("/login", async (req, res) => {
         status: "FAILED",
         message: "fields can't empty",
       });
+      return;
     }
     //checking for user exist
     const userExist = await User.findOne({ email });
@@ -67,10 +71,11 @@ router.post("/login", async (req, res) => {
       const passwdMatched = await bcrypt.compare(password, userExist.password);
 
       if (!passwdMatched) {
-        return res.status(500).json({
+        res.status(500).json({
           status: "FAILED",
           message: "password wrong",
         });
+        return;
       }
 
       const jwtToken = jwt.sign(userExist.toJSON(), process.env.JWT_SECRET);
@@ -90,8 +95,8 @@ router.post("/login", async (req, res) => {
       });
     }
   } catch (error) {
-    const err = new Error("Something went wrong! Please try after some time.");
-    next(err);
+    console.log(error);
+    res.status(500).json({ status: "FAILED", message: "Server error" });
   }
 });
 

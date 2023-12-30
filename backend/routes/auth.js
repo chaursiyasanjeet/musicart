@@ -73,9 +73,7 @@ router.post("/login", async (req, res) => {
         });
       }
 
-      const jwtToken = jwt.sign(userExist.toJSON(), process.env.JWT_SECRET, {
-        expiresIn: 3600,
-      });
+      const jwtToken = jwt.sign(userExist.toJSON(), process.env.JWT_SECRET);
 
       res.json({
         status: "SUCCESS",

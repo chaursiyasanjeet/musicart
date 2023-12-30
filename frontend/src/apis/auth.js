@@ -3,7 +3,6 @@ const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 export const register = async (name, email, mobile, password) => {
   try {
-    console.log(backendURL);
     const requrl = `${backendURL}/register`;
     const payLoad = {
       name: name,

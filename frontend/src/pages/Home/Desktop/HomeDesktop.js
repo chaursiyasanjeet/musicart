@@ -9,12 +9,22 @@ import GridIcon from "../../../assets/gridIcon.svg";
 import FilledGrid from "../../../assets/filledGrid.svg";
 import ListIcon from "../../../assets/list.svg";
 import FilledList from "../../../assets/filledList.svg";
-import headphone from "../../../assets/headphone.png";
 import imgCart from "../../../assets/imgCart.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getProduct } from "../../../apis/product";
 
 const Home = () => {
   const [view, setView] = useState("list");
+  const [product, setProduct] = useState(null);
+
+  const productFetch = async () => {
+    const result = await getProduct();
+    console.log(result.data);
+    setProduct(result.data);
+  };
+  useEffect(() => {
+    productFetch();
+  }, []);
   return (
     <>
       <div className={style.header}>
@@ -123,473 +133,72 @@ const Home = () => {
         </section>
         {view === "grid" ? (
           <section className={style.productContainerGrid}>
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <div className={style.productImg}>
-                <img src={imgCart} alt="cartImg" />
-                <img src={headphone} alt="headphoneIcon" />
-              </div>
-              <div className={style.productSpec}>
-                <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-                <span className={style.productPrice}>Price-RS 3,000</span>
-                <span className={style.productType}>
-                  Blue | On-ear headphpne
-                </span>
-              </div>
-            </div>
+            {product === null ? (
+              <h1 style={{ margin: " auto" }}>
+                <b>Loading...</b>
+              </h1>
+            ) : (
+              product.map((item, index) => {
+                return (
+                  <div>
+                    <div className={style.productImg}>
+                      <img src={imgCart} alt="cartImg" />
+                      <img src={item.images[0]} alt="headphoneIcon" />
+                    </div>
+                    <div className={style.productSpec}>
+                      <span className={style.productTitle}>
+                        {item.brand} {item.model}
+                      </span>
+                      <span className={style.productPrice}>
+                        Price-₹ {item.price}
+                      </span>
+                      <span className={style.productType}>
+                        {item.color} | {item.headphoneType}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })
+            )}
           </section>
         ) : (
           <section className={style.productContainerList}>
-            <div className={style.singleProductBox}>
-              <div className={style.imgDiv}>
-                <img src={headphone} alt="headphoneIcon" />
-                <img
-                  src={imgCart}
-                  alt="cart icon"
-                  className={style.cartProductImg}
-                />
-              </div>
-              <div className={style.productSpecLIst}>
-                <span className={style.productListTitle}>
-                  boAt Rockerz 551ANC
-                </span>
-                <span className={style.productListPrice}>Price - ₹ 3,000</span>
-                <span className={style.colorType}>Blue | On-ear headphone</span>
-                <span className={style.shortSpec}>
-                  boAt Rockerz 551 ANC with Hybrid ANC, 100 HRS Playback, 40mm
-                  Drivers & ASAP Charge Bluetooth Headset (Stellar Black, On the
-                  Ear)
-                </span>
-                <button>Details</button>
-              </div>
-            </div>
-            <div className={style.singleProductBox}>
-              <div className={style.imgDiv}>
-                <img src={headphone} alt="headphoneIcon" />
-                <img
-                  src={imgCart}
-                  alt="cart icon"
-                  className={style.cartProductImg}
-                />
-              </div>
-              <div className={style.productSpecLIst}>
-                <span className={style.productListTitle}>
-                  boAt Rockerz 551ANC
-                </span>
-                <span className={style.productListPrice}>Price - ₹ 3,000</span>
-                <span className={style.colorType}>Blue | On-ear headphone</span>
-                <span className={style.shortSpec}>
-                  boAt Rockerz 551 ANC with Hybrid ANC, 100 HRS Playback, 40mm
-                  Drivers & ASAP Charge Bluetooth Headset (Stellar Black, On the
-                  Ear)
-                </span>
-                <button>Details</button>
-              </div>
-            </div>
-            <div className={style.singleProductBox}>
-              <div className={style.imgDiv}>
-                <img src={headphone} alt="headphoneIcon" />
-                <img
-                  src={imgCart}
-                  alt="cart icon"
-                  className={style.cartProductImg}
-                />
-              </div>
-              <div className={style.productSpecLIst}>
-                <span className={style.productListTitle}>
-                  boAt Rockerz 551ANC
-                </span>
-                <span className={style.productListPrice}>Price - ₹ 3,000</span>
-                <span className={style.colorType}>Blue | On-ear headphone</span>
-                <span className={style.shortSpec}>
-                  boAt Rockerz 551 ANC with Hybrid ANC, 100 HRS Playback, 40mm
-                  Drivers & ASAP Charge Bluetooth Headset (Stellar Black, On the
-                  Ear)
-                </span>
-                <button>Details</button>
-              </div>
-            </div>
-            <div className={style.singleProductBox}>
-              <div className={style.imgDiv}>
-                <img src={headphone} alt="headphoneIcon" />
-                <img
-                  src={imgCart}
-                  alt="cart icon"
-                  className={style.cartProductImg}
-                />
-              </div>
-              <div className={style.productSpecLIst}>
-                <span className={style.productListTitle}>
-                  boAt Rockerz 551ANC
-                </span>
-                <span className={style.productListPrice}>Price - ₹ 3,000</span>
-                <span className={style.colorType}>Blue | On-ear headphone</span>
-                <span className={style.shortSpec}>
-                  boAt Rockerz 551 ANC with Hybrid ANC, 100 HRS Playback, 40mm
-                  Drivers & ASAP Charge Bluetooth Headset (Stellar Black, On the
-                  Ear)
-                </span>
-                <button>Details</button>
-              </div>
-            </div>
-            <div className={style.singleProductBox}>
-              <div className={style.imgDiv}>
-                <img src={headphone} alt="headphoneIcon" />
-                <img
-                  src={imgCart}
-                  alt="cart icon"
-                  className={style.cartProductImg}
-                />
-              </div>
-              <div className={style.productSpecLIst}>
-                <span className={style.productListTitle}>
-                  boAt Rockerz 551ANC
-                </span>
-                <span className={style.productListPrice}>Price - ₹ 3,000</span>
-                <span className={style.colorType}>Blue | On-ear headphone</span>
-                <span className={style.shortSpec}>
-                  boAt Rockerz 551 ANC with Hybrid ANC, 100 HRS Playback, 40mm
-                  Drivers & ASAP Charge Bluetooth Headset (Stellar Black, On the
-                  Ear)
-                </span>
-                <button>Details</button>
-              </div>
-            </div>
+            {product === null ? (
+              <h1 style={{ margin: " auto" }}>
+                <b>Loading...</b>
+              </h1>
+            ) : (
+              product.map((item, index) => {
+                return (
+                  <div className={style.singleProductBox}>
+                    <div className={style.imgDiv}>
+                      <img src={item.images[0]} alt="headphoneIcon" />
+                      <img
+                        src={imgCart}
+                        alt="cart icon"
+                        className={style.cartProductImg}
+                      />
+                    </div>
+
+                    <div className={style.productSpecLIst}>
+                      <span className={style.productListTitle}>
+                        {item.brand} {item.model}
+                      </span>
+                      <span className={style.productListPrice}>
+                        Price - ₹ {item.price}
+                      </span>
+                      <span className={style.colorType}>
+                        {item.color} | {item.headphoneType}
+                      </span>
+                      <span className={style.shortSpec}>
+                        {item.shortDescription}
+                      </span>
+                      <button>Details</button>
+                    </div>
+                  </div>
+                );
+              })
+            )}
           </section>
         )}
       </div>

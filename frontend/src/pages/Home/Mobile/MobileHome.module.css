@@ -153,11 +153,10 @@
 
 .productContainer>div {
     width: calc(50% - 10px);
+    height: 35vh;
     padding-bottom: 3vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: 1vh;
     cursor: pointer;
     border: 2px solid rgba(206, 206, 206, 1);
@@ -166,6 +165,7 @@
 
 .productImg {
     width: 100%;
+    height: 65%;
     background-color: rgba(212, 229, 255, 1);
     display: flex;
     justify-content: center;
@@ -178,8 +178,10 @@
 }
 
 .productSpec {
+    height: 20%;
     display: flex;
     flex-direction: column;
+    padding-left: 3vw;
 }
 
 .productTitle {
@@ -195,7 +197,7 @@
 .productType {
     font-family: Roboto;
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 0.77rem;
     line-height: 3vh;
     letter-spacing: 0em;
     text-align: left;

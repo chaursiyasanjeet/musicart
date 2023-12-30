@@ -1,10 +1,22 @@
 import MobileNavFooter from "../../../components/MobileNavFooter/MobileNavFooter";
 import style from "./MobileHome.module.css";
 import saleIcon from "../../../assets/mobileSale.png";
-import headphone from "../../../assets/headphone.png";
 import MobileSearchBar from "../../../components/MobileSearchBar/MobileSearchBar";
+import { getProduct } from "../../../apis/product";
+import { useState, useEffect } from "react";
 
 const MobileHome = () => {
+  const [product, setProduct] = useState(null);
+
+  const productFetch = async () => {
+    const result = await getProduct();
+    console.log(result.data);
+    setProduct(result.data);
+  };
+  useEffect(() => {
+    productFetch();
+  }, []);
+
   return (
     <>
       <MobileSearchBar />
@@ -78,136 +90,32 @@ const MobileHome = () => {
           </div>
         </section>
         <section className={style.productContainer}>
-          <div>
-            <div className={style.productImg}>
-              <img src={headphone} alt="headphoneIcon" />
-            </div>
-            <div className={style.productSpec}>
-              <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-              <span className={style.productPrice}>Price-RS 3,000</span>
-              <span className={style.productType}>Blue | On-ear headphpne</span>
-            </div>
-          </div>
-          <div>
-            <div className={style.productImg}>
-              <img src={headphone} alt="headphoneIcon" />
-            </div>
-            <div className={style.productSpec}>
-              <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-              <span className={style.productPrice}>Price-RS 3,000</span>
-              <span className={style.productType}>Blue | On-ear headphpne</span>
-            </div>
-          </div>
-          <div>
-            <div className={style.productImg}>
-              <img src={headphone} alt="headphoneIcon" />
-            </div>
-            <div className={style.productSpec}>
-              <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-              <span className={style.productPrice}>Price-RS 3,000</span>
-              <span className={style.productType}>Blue | On-ear headphpne</span>
-            </div>
-          </div>
-          <div>
-            <div className={style.productImg}>
-              <img src={headphone} alt="headphoneIcon" />
-            </div>
-            <div className={style.productSpec}>
-              <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-              <span className={style.productPrice}>Price-RS 3,000</span>
-              <span className={style.productType}>Blue | On-ear headphpne</span>
-            </div>
-          </div>
-          <div>
-            <div className={style.productImg}>
-              <img src={headphone} alt="headphoneIcon" />
-            </div>
-            <div className={style.productSpec}>
-              <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-              <span className={style.productPrice}>Price-RS 3,000</span>
-              <span className={style.productType}>Blue | On-ear headphpne</span>
-            </div>
-          </div>
-          <div>
-            <div className={style.productImg}>
-              <img src={headphone} alt="headphoneIcon" />
-            </div>
-            <div className={style.productSpec}>
-              <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-              <span className={style.productPrice}>Price-RS 3,000</span>
-              <span className={style.productType}>Blue | On-ear headphpne</span>
-            </div>
-          </div>
-          <div>
-            <div className={style.productImg}>
-              <img src={headphone} alt="headphoneIcon" />
-            </div>
-            <div className={style.productSpec}>
-              <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-              <span className={style.productPrice}>Price-RS 3,000</span>
-              <span className={style.productType}>Blue | On-ear headphpne</span>
-            </div>
-          </div>
-          <div>
-            <div className={style.productImg}>
-              <img src={headphone} alt="headphoneIcon" />
-            </div>
-            <div className={style.productSpec}>
-              <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-              <span className={style.productPrice}>Price-RS 3,000</span>
-              <span className={style.productType}>Blue | On-ear headphpne</span>
-            </div>
-          </div>
-          <div>
-            <div className={style.productImg}>
-              <img src={headphone} alt="headphoneIcon" />
-            </div>
-            <div className={style.productSpec}>
-              <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-              <span className={style.productPrice}>Price-RS 3,000</span>
-              <span className={style.productType}>Blue | On-ear headphpne</span>
-            </div>
-          </div>
-          <div>
-            <div className={style.productImg}>
-              <img src={headphone} alt="headphoneIcon" />
-            </div>
-            <div className={style.productSpec}>
-              <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-              <span className={style.productPrice}>Price-RS 3,000</span>
-              <span className={style.productType}>Blue | On-ear headphpne</span>
-            </div>
-          </div>
-          <div>
-            <div className={style.productImg}>
-              <img src={headphone} alt="headphoneIcon" />
-            </div>
-            <div className={style.productSpec}>
-              <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-              <span className={style.productPrice}>Price-RS 3,000</span>
-              <span className={style.productType}>Blue | On-ear headphpne</span>
-            </div>
-          </div>
-          <div>
-            <div className={style.productImg}>
-              <img src={headphone} alt="headphoneIcon" />
-            </div>
-            <div className={style.productSpec}>
-              <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-              <span className={style.productPrice}>Price-RS 3,000</span>
-              <span className={style.productType}>Blue | On-ear headphpne</span>
-            </div>
-          </div>
-          <div>
-            <div className={style.productImg}>
-              <img src={headphone} alt="headphoneIcon" />
-            </div>
-            <div className={style.productSpec}>
-              <span className={style.productTitle}>boAt Rockerz 551ANC</span>
-              <span className={style.productPrice}>Price-RS 3,000</span>
-              <span className={style.productType}>Blue | On-ear headphpne</span>
-            </div>
-          </div>
+          {product === null ? (
+            <h1 style={{ margin: " auto" }}>
+              <b>Loading...</b>
+            </h1>
+          ) : (
+            product.map((item, index) => {
+              return (
+                <div>
+                  <div className={style.productImg}>
+                    <img src={item.images[0]} alt="headphoneIcon" />
+                  </div>
+                  <div className={style.productSpec}>
+                    <span className={style.productTitle}>
+                      {item.brand} {item.model}
+                    </span>
+                    <span className={style.productPrice}>
+                      Price-₹ {item.price}
+                    </span>
+                    <span className={style.productType}>
+                      {item.color} | {item.headphoneType}
+                    </span>
+                  </div>
+                </div>
+              );
+            })
+          )}
         </section>
       </div>
       <MobileNavFooter component={"home"} />

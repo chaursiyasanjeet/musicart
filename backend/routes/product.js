@@ -119,6 +119,7 @@ router.get("/product", async (req, res) => {
       price: 1,
       color: 1,
       headphoneType: 1,
+      images: 1,
     })
       .sort(productSort)
       .collation({ locale: "en", strength: 2 });

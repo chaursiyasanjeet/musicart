@@ -73,6 +73,7 @@ router.get("/product", async (req, res) => {
   try {
     //getting all filter and sort value
     const {
+      search,
       company,
       headphoneType,
       featured,
@@ -88,6 +89,7 @@ router.get("/product", async (req, res) => {
       brand: { $regex: new RegExp(company, "i") },
       headphoneType: { $regex: new RegExp(headphoneType, "i") },
       color: { $regex: new RegExp(color, "i") },
+      shortDescription: { $regex: new RegExp(search, "i") },
     };
 
     //Inserting featured value in query

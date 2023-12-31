@@ -1,19 +1,46 @@
 import style from "./ProductDetailsDesktop.module.css";
+import { ToastContainer, toast } from "react-toastify";
 import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import musicIcon from "../../../assets/musicIcon.svg";
 import cart from "../../../assets/cart.svg";
-import headphone from "../../../assets/headphone.png";
-import img1 from "../../../assets/img1.png";
-import img2 from "../../../assets/img2.png";
-import img3 from "../../../assets/img3.png";
-import star from "../../../assets/star.svg";
-import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import starImage from "../../../assets/star.svg";
+import { useNavigate, useParams } from "react-router-dom";
+import { useRef, useState, useEffect } from "react";
+import { getProductDetails, addToCart } from "../../../apis/product";
 
 const ProductDetailsDesktop = () => {
   const redirect = useNavigate();
+  const { id } = useParams();
   const imgRef = useRef(null);
+  const [productDetails, setProductDetails] = useState(null);
+  const [login, setLogin] = useState(
+    localStorage.getItem("musicArtToken") ? true : false
+  );
+
+  useEffect(() => {
+    getProductDetails(id).then((data) => {
+      console.log(data.data);
+      setProductDetails(data.data);
+    });
+  }, []);
+
+  let stars = [];
+  if (productDetails) {
+    for (let i = 0; i < productDetails.rating; i++) {
+      stars.push(i);
+    }
+  }
+
+  const handleCart = async () => {
+    const result = await addToCart(id, 1);
+    if (result.status === "SUCCESS") {
+      toast.success("Added To Cart");
+    } else {
+      toast.error(result.message);
+    }
+  };
+
   return (
     <>
       <section className={style.header}>
@@ -25,9 +52,21 @@ const ProductDetailsDesktop = () => {
             <img src={musicIcon} alt="musicIcon" />
             <span>Musicart</span>
             <a href="/">Home/</a>
-            <a href="/productid">Productname</a>
+            {productDetails === null ? (
+              <a href="#">""</a>
+            ) : (
+              <a>
+                {productDetails.brand}
+                {productDetails.model}
+              </a>
+            )}
           </div>
-          <div className={style.cart}>
+          <div
+            className={style.cart}
+            onClick={() => {
+              redirect("/cart");
+            }}
+          >
             <img src={cart} alt="cartIcon" />
             <span>0</span>
           </div>
@@ -40,91 +79,121 @@ const ProductDetailsDesktop = () => {
         >
           Back to products
         </button>
-        <div className={style.productDescriptionHeader}>
-          Sony WH-CH720N, Wireless Over-Ear Active Noise Cancellation Headphones
-          with Mic, up to 50 Hours Playtime, Multi-Point Connection, App
-          Support, AUX & Voice Assistant Support for Mobile Phones (Black)
-        </div>
-        <section className={style.fullProductDetails}>
-          <div className={style.imageBox}>
-            <img ref={imgRef} src={headphone} alt="headphoneicon" />
-            <div className={style.smallImages}>
-              <img
-                src={img1}
-                alt="headphoneicon"
-                onClick={(e) => {
-                  imgRef.current.src = e.target.src;
-                }}
-              />
-              <img
-                src={img2}
-                alt="headphoneicon"
-                onClick={(e) => {
-                  imgRef.current.src = e.target.src;
-                }}
-              />
-              <img
-                src={img3}
-                alt="headphoneicon"
-                onClick={(e) => {
-                  imgRef.current.src = e.target.src;
-                }}
-              />
+        {productDetails === null ? (
+          <h1>Loading...</h1>
+        ) : (
+          <>
+            <div className={style.productDescriptionHeader}>
+              {productDetails.shortDescription}
             </div>
-          </div>
-          <div className={style.productTextDetail}>
-            <h1 className={style.productTitle}>Sony WH-CH720N</h1>
-            <div className={style.ratingBox}>
-              <img src={star} alt="star icon" />
-              <img src={star} alt="star icon" />
-              <img src={star} alt="star icon" />
-              <img src={star} alt="star icon" />
-              <span>(50 Customer reviews)</span>
-            </div>
-            <span className={style.price}>Price-₹3,500</span>
-            <span className={style.colorType}>Black | Over-ear headphone</span>
-            <div className={style.aboutProduct}>
-              <span>About this item</span>
-              <ul>
-                <li>Sony’s lightest Wireless Noise-cancelling headband ever</li>
-                <li>
-                  Up to 50-hour battery life with quick charging (3 min charge
-                  for up to 1 hour of playback)
-                </li>
-                <li>
-                  Multi-Point Connection helps to pair with two Bluetooth
-                  devices at the same time
-                </li>
-
-                <li>
-                  Take noise cancelling to the next level with Sony’s Integrated
-                  Processor V1,so you can fully immerse yourself in the music
-                </li>
-                <li>Super comfortable and lightweight design ( 192 Grams )</li>
-
-                <li>High sound quality and well-balanced sound tuning</li>
-              </ul>
-            </div>
-            <div className={style.availableAndBrand}>
-              <div>
-                <span>Available -</span>
-                <span> In stock</span>
+            <section className={style.fullProductDetails}>
+              <div className={style.imageBox}>
+                <img
+                  ref={imgRef}
+                  src={productDetails.images[0]}
+                  alt="headphoneicon"
+                />
+                <div className={style.smallImages}>
+                  <img
+                    src={productDetails.images[1]}
+                    alt="headphoneicon"
+                    onClick={(e) => {
+                      imgRef.current.src = e.target.src;
+                    }}
+                  />
+                  <img
+                    src={productDetails.images[2]}
+                    alt="headphoneicon"
+                    onClick={(e) => {
+                      imgRef.current.src = e.target.src;
+                    }}
+                  />
+                  <img
+                    src={productDetails.images[3]}
+                    alt="headphoneicon"
+                    onClick={(e) => {
+                      imgRef.current.src = e.target.src;
+                    }}
+                  />
+                </div>
               </div>
-              <div>
-                <span>Brand -</span>
-                <span> Sony</span>
+              <div className={style.productTextDetail}>
+                <h1 className={style.productTitle}>
+                  {productDetails.brand} {productDetails.model}
+                </h1>
+                <div className={style.ratingBox}>
+                  {stars.map((item) => {
+                    return <img key={item} src={starImage} alt="star icon" />;
+                  })}
+                  <span>({productDetails.reviewCount} Customer reviews)</span>
+                </div>
+                <span className={style.price}>
+                  Price-₹{productDetails.price}
+                </span>
+                <span className={style.colorType}>
+                  {productDetails.color} | {productDetails.headphoneType}
+                </span>
+                <div className={style.aboutProduct}>
+                  <span>About this item</span>
+                  <ul>
+                    {productDetails.about.map((item, index) => {
+                      return <li key={index}>{item}</li>;
+                    })}
+                  </ul>
+                </div>
+                <div className={style.availableAndBrand}>
+                  <div>
+                    <span>Available -</span>
+                    <span> {productDetails.available}</span>
+                  </div>
+                  <div>
+                    <span>Brand -</span>
+                    <span> {productDetails.brand}</span>
+                  </div>
+                </div>
+                {login ? (
+                  <div className={style.buttons}>
+                    <button onClick={handleCart}>Add to cart</button>
+                    <button>Buy Now</button>
+                  </div>
+                ) : (
+                  <div className={style.buttons}>
+                    <button
+                      onClick={() => {
+                        redirect("/signin");
+                      }}
+                    >
+                      Login
+                    </button>
+                    <button
+                      onClick={() => {
+                        redirect("/signup");
+                      }}
+                    >
+                      Signup
+                    </button>
+                  </div>
+                )}
               </div>
-            </div>
-            <div className={style.buttons}>
-              <button>Add to cart</button>
-              <button>Buy Now</button>
-            </div>
-          </div>
-        </section>
+            </section>
+          </>
+        )}
       </div>
       <section className={style.footer}>
         <Footer />
       </section>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 };

@@ -32,3 +32,14 @@ export const addToCart = async (id, quantity) => {
     }
   }
 };
+export const getProductDetails = async (id) => {
+  try {
+    const requrl = `${backendURL}/productDetails/${id}`;
+    const response = await axios.get(requrl);
+    return response.data;
+  } catch (error) {
+    if (error) {
+      return error.response.data;
+    }
+  }
+};

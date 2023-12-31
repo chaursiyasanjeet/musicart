@@ -4,19 +4,24 @@ import saleIcon from "../../../assets/mobileSale.png";
 import MobileSearchBar from "../../../components/MobileSearchBar/MobileSearchBar";
 import { getProduct } from "../../../apis/product";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MobileHome = () => {
+  const redirect = useNavigate();
   const [product, setProduct] = useState(null);
 
   const productFetch = async () => {
     const result = await getProduct();
-    console.log(result.data);
     setProduct(result.data);
   };
   useEffect(() => {
     productFetch();
   }, []);
 
+  const productDetailPage = (id, brand, model) => {
+    const productName = brand + model;
+    redirect(`/${productName}/${id}`);
+  };
   return (
     <>
       <MobileSearchBar />
@@ -97,7 +102,12 @@ const MobileHome = () => {
           ) : (
             product.map((item, index) => {
               return (
-                <div>
+                <div
+                  key={item._id}
+                  onClick={() => {
+                    productDetailPage(item._id, item.brand, item.model);
+                  }}
+                >
                   <div className={style.productImg}>
                     <img src={item.images[0]} alt="headphoneIcon" />
                   </div>

@@ -150,24 +150,24 @@ router.get("/productDetails/:id", async (req, res) => {
 
 router.put("/addToCart", isLoggedIn, async (req, res) => {
   try {
-    const product = req.body;
+    const { id, quantity } = req.body;
     const user = await User.findById(req.userExist._id);
     let newItem = true;
     if (user.cart.length > 0) {
       for (let i = 0; i < user.cart.length; i++) {
         const productId = user.cart[i].productDetails._id.toString();
-        if (productId === product.id) {
-          user.cart[i].quantity += product.quantity;
+        if (productId === id) {
+          user.cart[i].quantity += quantity;
           newItem = false;
           break;
         }
       }
     }
-    const productToAdd = await Product.findById(product.id);
+    const productToAdd = await Product.findById(id);
     if (newItem) {
       user.cart.push({
         productDetails: productToAdd,
-        quantity: product.quantity,
+        quantity: quantity,
       });
     }
 

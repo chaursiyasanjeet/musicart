@@ -184,18 +184,23 @@ router.put("/addToCart", isLoggedIn, async (req, res) => {
 
 router.put("/orderPlace", isLoggedIn, async (req, res) => {
   try {
-    const { name, address, product, orderFromCart } = req.body;
+    const { name, address, productId } = req.body;
     const user = await User.findById(req.userExist._id);
 
-    if (!name || !address || !product) {
+    if (!name || !address) {
       res.status(200).json({ status: "FAILED", message: "Empty Filed" });
       return;
     }
-
+    let products;
+    if (productId) {
+      products = await Product.findById(req.params.id);
+    } else {
+      products = user.cart;
+    }
     let orderDetails = {
       name,
       address,
-      product: orderFromCart ? user.cart : product,
+      products: products,
       orderTime: new Date(),
     };
 

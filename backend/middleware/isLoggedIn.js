@@ -5,6 +5,7 @@ const isLoggedIn = (req, res, next) => {
   try {
     const jwtToken = req.headers.token;
     const user = jwt.verify(jwtToken, process.env.JWT_SECRET);
+    console.log(user);
     req.userExist = user;
     next();
   } catch (error) {

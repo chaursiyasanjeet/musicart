@@ -182,13 +182,13 @@ router.put("/addToCart", isLoggedIn, async (req, res) => {
   }
 });
 
-router.get("/cartProduct", isLoggedIn, async (res, req) => {
+router.get("/cartProduct", isLoggedIn, async (req, res) => {
   try {
-    const user = await User.findById(req.userExist._id);
+    const cart = req.userExist.cart;
 
     res.status(200).json({
       status: "SUCCESS",
-      data: user.cart,
+      data: cart,
     });
   } catch (error) {
     console.log(error);

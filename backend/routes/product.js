@@ -151,6 +151,7 @@ router.get("/productDetails/:id", async (req, res) => {
 
 router.put("/addToCart", isLoggedIn, async (req, res) => {
   try {
+    console.log("hello");
     const { id, quantity, replaceQuantity } = req.body;
     const user = await User.findById(req.userExist._id);
     let newItem = true;

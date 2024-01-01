@@ -172,7 +172,7 @@ router.put("/addToCart", isLoggedIn, async (req, res) => {
     if (newItem) {
       user.cart.push({
         productDetails: productToAdd,
-        quantity: quantity,
+        quantity: parseInt(quantity),
       });
     }
 
@@ -201,10 +201,12 @@ router.get("/cartProduct", isLoggedIn, async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
 router.put("/orderPlace", isLoggedIn, async (req, res) => {
   try {
-    const { name, address, productId } = req.body;
-    const user = await User.findById(req.userExist._id);
+    const { name, address, orderFromCart, productId } = req.body;
+    const id = req.userExist._id;
+    const user = await User.findById(id);
 
     if (!name || !address) {
       res.status(200).json({ status: "FAILED", message: "Empty Filed" });

@@ -151,14 +151,18 @@ router.get("/productDetails/:id", async (req, res) => {
 
 router.put("/addToCart", isLoggedIn, async (req, res) => {
   try {
-    const { id, quantity } = req.body;
+    const { id, quantity, replaceQuantity } = req.body;
     const user = await User.findById(req.userExist._id);
     let newItem = true;
     if (user.cart.length > 0) {
       for (let i = 0; i < user.cart.length; i++) {
         const productId = user.cart[i].productDetails._id.toString();
         if (productId === id) {
-          user.cart[i].quantity += quantity;
+          if (replaceQuantity) {
+            user.cart[i].quantity = quantity;
+          } else {
+            user.cart[i].quantity += quantity;
+          }
           newItem = false;
           break;
         }

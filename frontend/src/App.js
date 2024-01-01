@@ -17,7 +17,7 @@ function App() {
           <Route path="/signin" element={<Login />} />
           <Route path="/:productname/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout/:orderfrom" element={<Checkout />} />
           <Route path="/ordersuccess" element={<OrderSuccess />} />
         </Routes>
       </BrowserRouter>

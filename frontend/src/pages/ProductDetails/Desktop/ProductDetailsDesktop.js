@@ -20,7 +20,6 @@ const ProductDetailsDesktop = () => {
 
   useEffect(() => {
     getProductDetails(id).then((data) => {
-      console.log(data.data);
       setProductDetails(data.data);
     });
   }, []);
@@ -33,7 +32,7 @@ const ProductDetailsDesktop = () => {
   }
 
   const handleCart = async () => {
-    const result = await addToCart(id, 1);
+    const result = await addToCart(id, 1, false);
     if (result.status === "SUCCESS") {
       toast.success("Added To Cart");
     } else {
@@ -154,7 +153,13 @@ const ProductDetailsDesktop = () => {
                 {login ? (
                   <div className={style.buttons}>
                     <button onClick={handleCart}>Add to cart</button>
-                    <button>Buy Now</button>
+                    <button
+                      onClick={() => {
+                        redirect(`/checkout/${productDetails._id}`);
+                      }}
+                    >
+                      Buy Now
+                    </button>
                   </div>
                 ) : (
                   <div className={style.buttons}>

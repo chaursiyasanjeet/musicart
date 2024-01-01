@@ -14,7 +14,7 @@ export const getProduct = async () => {
   }
 };
 
-export const addToCart = async (id, quantity) => {
+export const addToCart = async (id, quantity, replaceQuantity) => {
   try {
     const requrl = `${backendURL}/addToCart`;
     const storedToken = localStorage.getItem("musicArtToken");
@@ -23,7 +23,10 @@ export const addToCart = async (id, quantity) => {
         token: storedToken,
       },
     };
-    const payLoad = { id, quantity };
+    let payLoad = { id, quantity, replaceQuantity: false };
+    if (replaceQuantity) {
+      payLoad = { id, quantity, replaceQuantity: true };
+    }
     const response = await axios.put(requrl, payLoad, config);
     return response.data;
   } catch (error) {
@@ -32,10 +35,59 @@ export const addToCart = async (id, quantity) => {
     }
   }
 };
+
 export const getProductDetails = async (id) => {
   try {
     const requrl = `${backendURL}/productDetails/${id}`;
     const response = await axios.get(requrl);
+    return response.data;
+  } catch (error) {
+    if (error) {
+      return error.response.data;
+    }
+  }
+};
+
+export const getCartProduct = async (id) => {
+  try {
+    const requrl = `${backendURL}/cartproduct`;
+    const storedToken = localStorage.getItem("musicArtToken");
+    const config = {
+      headers: {
+        token: storedToken,
+      },
+    };
+    const response = await axios.get(requrl, config);
+    return response.data;
+  } catch (error) {
+    if (error) {
+      return error.response.data;
+    }
+  }
+};
+
+export const orderPlace = async (productId, orderFromCart) => {
+  try {
+    const requrl = `${backendURL}/orderPlace`;
+    const storedToken = localStorage.getItem("musicArtToken");
+    const config = {
+      headers: {
+        token: storedToken,
+      },
+    };
+    const payLoad = {
+      name: "Sanjeet Kumar",
+      address: "2nd Floor A18 Ganesh Nagr,Delhi 110092",
+      orderFromCart: false,
+    };
+
+    if (orderFromCart) {
+      payLoad.orderFromCart = true;
+    } else {
+      payLoad.productId = productId;
+    }
+    console.log(productId);
+    const response = await axios.put(requrl, payLoad, config);
     return response.data;
   } catch (error) {
     if (error) {

@@ -157,9 +157,15 @@ const Home = () => {
         {view === "grid" ? (
           <section className={style.productContainerGrid}>
             {product === null ? (
-              <h1 style={{ margin: "auto" }}>
-                <b>Loading...</b>
-              </h1>
+              <center
+                style={{
+                  marginTop: "10vh",
+                  fontWeight: "500",
+                  fontSize: "3vw",
+                }}
+              >
+                <h1>Cart Empty</h1>
+              </center>
             ) : (
               product.map((item, index) => {
                 return (

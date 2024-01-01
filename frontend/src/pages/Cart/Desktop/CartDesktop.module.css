@@ -42,22 +42,7 @@
     color: rgba(0, 0, 0, 1)
 }
 
-.cart {
-    width: max-content;
-    height: 70%;
-    padding: 1vh 3vh 1vh 3vh;
-    background-color: rgba(29, 112, 0, 1);
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    gap: 1vh;
-    font-family: Roboto;
-    font-size: 1.3rem;
-    font-weight: 400;
-    letter-spacing: 0em;
-    color: rgba(255, 255, 255, 1);
-    cursor: pointer;
-}
+
 
 .backToProductBtn {
     margin-top: 5vh;
@@ -102,7 +87,7 @@
 }
 
 .allProducts {
-    width: 75%;
+    width: 72%;
     display: flex;
     flex-direction: column;
 }
@@ -118,7 +103,7 @@
 .ProductDetails {
     display: flex;
     flex-direction: column;
-    padding-right: 3vw;
+    padding-right: 1vw;
 }
 
 .ProductDetails>div {
@@ -197,7 +182,7 @@
 .totalAmount {
     position: relative;
     border-left: 2.87px solid rgba(225, 225, 225, 1);
-    width: 24%;
+    width: 26%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -225,14 +210,14 @@
     justify-content: space-between;
     color: rgba(0, 0, 0, 1);
     font-family: Roboto;
-    font-size: 1.5vw;
+    font-size: 1.4vw;
     font-weight: 400;
     line-height: 25px;
     letter-spacing: 0em;
 }
 
 .totalAmount>div>div>span:last-of-type {
-    width: 26%;
+    width: 25%;
 }
 
 
@@ -246,20 +231,19 @@
 }
 
 .totalAmoutAndPlaceOrder>div {
-    width: 95%;
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
     font-family: Roboto;
     letter-spacing: 0em;
 }
 
 .totalAmoutAndPlaceOrder>div>span:first-of-type {
-    font-size: 2vw;
+    font-size: 1.9vw;
     font-weight: 500;
 }
 
 .totalAmoutAndPlaceOrder>div>span:last-of-type {
-    font-size: 1.8vw;
+    width: 30%;
+    font-size: 1.6vw;
     font-weight: 400;
 }
 
@@ -281,6 +265,8 @@
 
 .footer {
     position: absolute;
+    bottom: 0;
+    position: sticky;
 }
 
 @media (max-width:600px) {

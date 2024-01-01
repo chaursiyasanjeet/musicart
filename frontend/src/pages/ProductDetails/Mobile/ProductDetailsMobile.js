@@ -2,10 +2,6 @@ import style from "./ProductDetailsMobile.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import MobileNavFooter from "../../../components/MobileNavFooter/MobileNavFooter";
 import Header from "../../../components/Header/Header";
-import Headphone from "../../../assets/headphone.png";
-import img1 from "../../../assets/img1.png";
-import img2 from "../../../assets/img2.png";
-import img3 from "../../../assets/img3.png";
 import starImage from "../../../assets/star.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
@@ -22,7 +18,6 @@ const ProductDetailsMobile = () => {
 
   useEffect(() => {
     getProductDetails(id).then((data) => {
-      console.log(data.data);
       setProductDetails(data.data);
     });
   }, []);
@@ -35,10 +30,11 @@ const ProductDetailsMobile = () => {
   }
 
   const handleCart = async () => {
-    const result = await addToCart(id, 1);
+    const result = await addToCart(id, 1, false);
     if (result.status === "SUCCESS") {
       toast.success("Added To Cart");
     } else {
+      console.log(result);
       toast.error(result.message);
     }
   };
@@ -56,7 +52,14 @@ const ProductDetailsMobile = () => {
             }}
           />
         </div>
-        <button className={style.buyNowButton}>Buy Now</button>
+        <button
+          className={style.buyNowButton}
+          onClick={() => {
+            redirect(`/checkout/${productDetails._id}`);
+          }}
+        >
+          Buy Now
+        </button>
         {productDetails === null ? (
           <h1>Loading...</h1>
         ) : (
@@ -108,7 +111,13 @@ const ProductDetailsMobile = () => {
         {login ? (
           <div className={style.buttons}>
             <button onClick={handleCart}>Add to cart</button>
-            <button>Buy Now</button>
+            <button
+              onClick={() => {
+                redirect(`/checkout/${productDetails._id}`);
+              }}
+            >
+              Buy Now
+            </button>
           </div>
         ) : (
           <div className={style.buttons}>

@@ -204,7 +204,7 @@ router.get("/cartProduct", isLoggedIn, async (req, res) => {
 
 router.put("/orderPlace", isLoggedIn, async (req, res) => {
   try {
-    const { name, address, orderFromCart, productId } = req.body;
+    const { name, address, orderFromCart } = req.body;
     const id = req.userExist._id;
     const user = await User.findById(id);
 
@@ -213,7 +213,7 @@ router.put("/orderPlace", isLoggedIn, async (req, res) => {
       return;
     }
     let products;
-    if (productId) {
+    if (!orderFromCart) {
       products = await Product.findById(req.params.id);
     } else {
       products = user.cart;

@@ -182,6 +182,19 @@ router.put("/addToCart", isLoggedIn, async (req, res) => {
   }
 });
 
+router.get("/cartProduct", isLoggedIn, async (res, req) => {
+  try {
+    const user = await User.findById(req.userExist._id);
+
+    res.status(200).json({
+      status: "SUCCESS",
+      data: user.cart,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 router.put("/orderPlace", isLoggedIn, async (req, res) => {
   try {
     const { name, address, productId } = req.body;

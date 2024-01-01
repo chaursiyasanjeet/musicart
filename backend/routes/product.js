@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 const Product = require("../models/product");
@@ -184,11 +185,12 @@ router.put("/addToCart", isLoggedIn, async (req, res) => {
 
 router.get("/cartProduct", isLoggedIn, async (req, res) => {
   try {
-    const cart = req.userExist.cart;
+    const id = req.userExist._id;
+    const user = await User.findById(id);
 
     res.status(200).json({
       status: "SUCCESS",
-      data: cart,
+      data: user.cart,
     });
   } catch (error) {
     console.log(error);

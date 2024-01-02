@@ -103,12 +103,8 @@
     text-align: center;
     color: rgba(255, 255, 255, 1);
     cursor: pointer;
-    transform: 4s;
 }
 
-.form>button:active {
-    scale: 0.5;
-}
 
 .bottomPart {
     font-family: Roboto;

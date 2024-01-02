@@ -14,7 +14,6 @@ const CartDesktop = () => {
   useEffect(() => {
     getCartProduct().then((data) => {
       if (data.status === "SUCCESS") {
-        console.log(data);
         setProducts(data.data);
       }
     });

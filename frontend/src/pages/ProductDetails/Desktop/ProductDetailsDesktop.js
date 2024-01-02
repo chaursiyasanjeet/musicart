@@ -7,13 +7,18 @@ import cart from "../../../assets/cart.svg";
 import starImage from "../../../assets/star.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
-import { getProductDetails, addToCart } from "../../../apis/product";
+import {
+  getProductDetails,
+  addToCart,
+  getCartProduct,
+} from "../../../apis/product";
 
 const ProductDetailsDesktop = () => {
   const redirect = useNavigate();
   const { id } = useParams();
   const imgRef = useRef(null);
   const [productDetails, setProductDetails] = useState(null);
+  const [cartLength, setCartLength] = useState(0);
   const [login, setLogin] = useState(
     localStorage.getItem("musicArtToken") ? true : false
   );
@@ -21,6 +26,11 @@ const ProductDetailsDesktop = () => {
   useEffect(() => {
     getProductDetails(id).then((data) => {
       setProductDetails(data.data);
+    });
+    getCartProduct().then((data) => {
+      if (data.status === "SUCCESS") {
+        setCartLength(data.data.length);
+      }
     });
   }, []);
 
@@ -52,7 +62,7 @@ const ProductDetailsDesktop = () => {
             <span>Musicart</span>
             <a href="/">Home/</a>
             {productDetails === null ? (
-              <a href="#">""</a>
+              <a href="#"></a>
             ) : (
               <a>
                 {productDetails.brand}
@@ -67,7 +77,7 @@ const ProductDetailsDesktop = () => {
             }}
           >
             <img src={cart} alt="cartIcon" />
-            <span>0</span>
+            <span>{cartLength}</span>
           </div>
         </section>
         <button

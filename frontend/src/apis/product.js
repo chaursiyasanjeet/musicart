@@ -53,7 +53,7 @@ export const getProductDetails = async (id) => {
   }
 };
 
-export const getCartProduct = async (id) => {
+export const getCartProduct = async () => {
   try {
     const requrl = `${backendURL}/cartproduct`;
     const storedToken = localStorage.getItem("musicArtToken");

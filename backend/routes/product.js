@@ -78,7 +78,7 @@ router.get("/product", async (req, res) => {
       company,
       headphoneType,
       featured,
-      color,
+      colour,
       sortPrice,
       sortName,
       minPrice,
@@ -89,7 +89,7 @@ router.get("/product", async (req, res) => {
     const productQuery = {
       brand: { $regex: new RegExp(company, "i") },
       headphoneType: { $regex: new RegExp(headphoneType, "i") },
-      color: { $regex: new RegExp(color, "i") },
+      color: { $regex: new RegExp(colour, "i") },
       shortDescription: { $regex: new RegExp(search, "i") },
     };
 

@@ -12,7 +12,6 @@ import backIcon from "../../../assets/backIcon.svg";
 const ProductDetailsMobile = () => {
   const redirect = useNavigate();
   const { id } = useParams();
-  const imgRef = useRef(null);
   const [productDetails, setProductDetails] = useState(null);
   const [slideCounter, setSlideCounter] = useState(0);
   const [login, setLogin] = useState(
@@ -22,7 +21,6 @@ const ProductDetailsMobile = () => {
   useEffect(() => {
     getProductDetails(id).then((data) => {
       setProductDetails(data.data);
-      console.log(imgRef.current.innerHTML);
     });
   }, []);
 
@@ -50,6 +48,26 @@ const ProductDetailsMobile = () => {
     slideCounter > 0 ? setSlideCounter(slideCounter - 1) : setSlideCounter(3);
   };
 
+  const startX = useRef(null);
+
+  const handleTouchStart = (e) => {
+    startX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    if (!startX.current) return;
+
+    const currentX = e.touches[0].clientX;
+    const diff = startX.current - currentX;
+
+    if (diff > 0) {
+      goToNextImg();
+    } else if (diff < -0) {
+      goToPrevImg();
+    }
+
+    startX.current = null;
+  };
   return (
     <>
       <Header />
@@ -98,13 +116,20 @@ const ProductDetailsMobile = () => {
         ) : (
           <>
             <div className={style.productImgSlider}>
-              <div className={style.productImages} ref={imgRef}>
+              <div
+                className={style.productImages}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+              >
                 {productDetails.images.map((item, index) => {
                   return (
                     <img
                       src={item}
                       alt={`headphoneImg${index}`}
-                      style={{ left: `${index * 100}%` }}
+                      style={{
+                        left: `${index * 100}%`,
+                        transform: `translateX(-${slideCounter * 100}%)`,
+                      }}
                     />
                   );
                 })}

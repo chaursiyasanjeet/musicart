@@ -226,6 +226,9 @@
 
 .footer {
     margin-top: 15vh;
+    position: absolute;
+    bottom: 0;
+    position: static
 }
 
 @media (max-width:600px) {

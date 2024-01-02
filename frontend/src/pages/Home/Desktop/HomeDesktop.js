@@ -20,14 +20,14 @@ const Home = () => {
   const cartRef = useRef(null);
   const [view, setView] = useState("list");
   const [product, setProduct] = useState(null);
-
+  const [filterQuery, setFilterQuery] = useState({});
   const productFetch = async () => {
-    const result = await getProduct();
+    const result = await getProduct(filterQuery);
     setProduct(result.data);
   };
   useEffect(() => {
     productFetch();
-  }, []);
+  }, [filterQuery]);
 
   const handleCart = async (id) => {
     const result = await addToCart(id, 1);
@@ -41,6 +41,64 @@ const Home = () => {
   const productDetailPage = (id, brand, model) => {
     const productName = brand + model;
     redirect(`/${productName}/${id}`);
+  };
+
+  const handleSort = (e) => {
+    if (e.target.value === "featured") {
+      setFilterQuery({
+        ...filterQuery,
+        featured: true,
+        sortPrice: "",
+        sortName: "",
+      });
+    } else if (e.target.value === "PriceLowest") {
+      setFilterQuery({
+        ...filterQuery,
+        sortPrice: 1,
+        sortName: "",
+      });
+    } else if (e.target.value === "PriceHighest") {
+      setFilterQuery({
+        ...filterQuery,
+        sortPrice: -1,
+        sortName: "",
+      });
+    } else if (e.target.value === "a-z") {
+      setFilterQuery({
+        ...filterQuery,
+        sortName: 1,
+        sortPrice: "",
+      });
+    } else {
+      setFilterQuery({
+        ...filterQuery,
+        sortName: -1,
+        sortPrice: "",
+      });
+    }
+  };
+
+  const handlePriceFilter = (e) => {
+    if (e.target.value === "featured") {
+      setFilterQuery({
+        ...filterQuery,
+        featured: true,
+        minPrice: 0,
+        maxPrice: 20000,
+      });
+    } else {
+      const [minPrice, maxPrice] = e.target.value.split("-").map(Number);
+      setFilterQuery({ ...filterQuery, minPrice, maxPrice });
+    }
+  };
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    if (value === "featured") {
+      setFilterQuery({ ...filterQuery, featured: true, [name]: "" });
+    } else {
+      setFilterQuery({ ...filterQuery, [name]: value });
+    }
   };
 
   return (
@@ -76,7 +134,12 @@ const Home = () => {
         </section>
         <section className={style.searchBox}>
           <img src={searchIcon} alt="searchIcon" />
-          <input type="text" name="search" placeholder="Search Product" />
+          <input
+            type="text"
+            name="search"
+            placeholder="Search Product"
+            onChange={handleFilterChange}
+          />
         </section>
 
         <section className={style.filterBox}>
@@ -98,18 +161,18 @@ const Home = () => {
           </div>
 
           <div className={style.filterSelectBox}>
-            <select name="headphoneType">
+            <select name="headphoneType" onChange={handleFilterChange}>
               <option value="" disabled selected hidden>
                 Headphone type
               </option>
               <option value="featured">Featured</option>
-              <option value="inEarHeadphone">In-ear headphone</option>
-              <option value="onEarHeadphobe">On-ear headphobe</option>
+              <option value="In ear">In-ear headphone</option>
+              <option value="On ear">On-ear headphobe</option>
 
-              <option value="overEarHeadphone">Over-ear headphone</option>
+              <option value="Over ear">Over-ear headphone</option>
             </select>
 
-            <select name="company">
+            <select name="company" onChange={handleFilterChange}>
               <option value="" disabled selected hidden>
                 Company
               </option>
@@ -121,7 +184,7 @@ const Home = () => {
               <option value="marshall">Marshall</option>
               <option value="ptron">Ptron</option>
             </select>
-            <select name="colour">
+            <select name="colour" onChange={handleFilterChange}>
               <option value="" disabled selected hidden>
                 Colour
               </option>
@@ -131,11 +194,11 @@ const Home = () => {
               <option value="white">White</option>
               <option value="brown">Brown</option>
             </select>
-            <select name="price">
+            <select name="price" onChange={handlePriceFilter}>
               <option value="" disabled selected hidden>
                 Price
               </option>
-              <option value="fetured">Featured</option>
+              <option value="featured">Featured</option>
               <option value="0-1000">₹0-₹1000</option>
               <option value="1000-2000">₹1,000-₹10,000</option>
               <option value="10000-20000">₹10000-₹20000</option>
@@ -143,7 +206,7 @@ const Home = () => {
           </div>
           <div className={style.sortBox}>
             <span>Sort by:</span>
-            <select name="sort" id="">
+            <select name="sort" onChange={handleSort}>
               <option value="featured" selected>
                 Featured
               </option>
@@ -164,8 +227,10 @@ const Home = () => {
                   fontSize: "3vw",
                 }}
               >
-                <h1>Cart Empty</h1>
+                <h1>Loading...</h1>
               </center>
+            ) : product.length === 0 ? (
+              <h1 className={style.noProductFound}>No product found</h1>
             ) : (
               product.map((item, index) => {
                 return (
@@ -203,9 +268,9 @@ const Home = () => {
         ) : (
           <section className={style.productContainerList}>
             {product === null ? (
-              <h1 style={{ margin: " auto" }}>
-                <b>Loading...</b>
-              </h1>
+              <h1>Loading...</h1>
+            ) : product.length === 0 ? (
+              <h1 className={style.noProductFound}>No product found</h1>
             ) : (
               product.map((item, index) => {
                 return (

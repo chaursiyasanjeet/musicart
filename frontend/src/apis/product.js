@@ -1,10 +1,15 @@
 import axios from "axios";
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
-export const getProduct = async () => {
+export const getProduct = async (filterQuery) => {
   try {
     const requrl = `${backendURL}/product`;
-    const response = await axios.get(requrl);
+    const queryParameters = {
+      ...filterQuery,
+    };
+    const response = await axios.get(requrl, {
+      params: queryParameters,
+    });
 
     return response.data;
   } catch (error) {
@@ -86,7 +91,6 @@ export const orderPlace = async (productId, orderFromCart) => {
     } else {
       payLoad.productId = productId;
     }
-    console.log(productId);
     const response = await axios.put(requrl, payLoad, config);
     return response.data;
   } catch (error) {

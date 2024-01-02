@@ -1,7 +1,7 @@
 import MobileNavFooter from "../../../components/MobileNavFooter/MobileNavFooter";
 import style from "./MobileHome.module.css";
 import saleIcon from "../../../assets/mobileSale.png";
-import MobileSearchBar from "../../../components/MobileSearchBar/MobileSearchBar";
+import searchIcon from "../../../assets/search.svg";
 import { getProduct } from "../../../apis/product";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,22 +9,91 @@ import { useNavigate } from "react-router-dom";
 const MobileHome = () => {
   const redirect = useNavigate();
   const [product, setProduct] = useState(null);
+  const [filterQuery, setFilterQuery] = useState({});
 
   const productFetch = async () => {
-    const result = await getProduct();
+    const result = await getProduct(filterQuery);
     setProduct(result.data);
   };
   useEffect(() => {
     productFetch();
-  }, []);
+  }, [filterQuery]);
 
   const productDetailPage = (id, brand, model) => {
     const productName = brand + model;
     redirect(`/${productName}/${id}`);
   };
+  const handleSort = (e) => {
+    if (e.target.value === "featured") {
+      setFilterQuery({
+        ...filterQuery,
+        featured: true,
+        sortPrice: "",
+        sortName: "",
+      });
+    } else if (e.target.value === "PriceLowest") {
+      setFilterQuery({
+        ...filterQuery,
+        sortPrice: 1,
+        sortName: "",
+      });
+    } else if (e.target.value === "PriceHighest") {
+      setFilterQuery({
+        ...filterQuery,
+        sortPrice: -1,
+        sortName: "",
+      });
+    } else if (e.target.value === "a-z") {
+      setFilterQuery({
+        ...filterQuery,
+        sortName: 1,
+        sortPrice: "",
+      });
+    } else {
+      setFilterQuery({
+        ...filterQuery,
+        sortName: -1,
+        sortPrice: "",
+      });
+    }
+  };
+
+  const handlePriceFilter = (e) => {
+    if (e.target.value === "featured") {
+      setFilterQuery({
+        ...filterQuery,
+        featured: true,
+        minPrice: 0,
+        maxPrice: 20000,
+      });
+    } else {
+      const [minPrice, maxPrice] = e.target.value.split("-").map(Number);
+      setFilterQuery({ ...filterQuery, minPrice, maxPrice });
+    }
+  };
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    if (value === "featured") {
+      setFilterQuery({ ...filterQuery, featured: true, [name]: "" });
+    } else {
+      setFilterQuery({ ...filterQuery, [name]: value });
+    }
+  };
+
   return (
     <>
-      <MobileSearchBar />
+      <section className={style.searchBoxHeader}>
+        <div>
+          <img src={searchIcon} alt="searchIcon" />
+          <input
+            type="text"
+            name="search"
+            placeholder="Search Musicart"
+            onChange={handleFilterChange}
+          />
+        </div>
+      </section>
       <div className={style.container}>
         <section className={style.saleBanner}>
           <div>
@@ -38,7 +107,7 @@ const MobileHome = () => {
         <section className={style.filterBox}>
           <div className={style.sortBox}>
             <span>Sort by:</span>
-            <select name="sort" id="">
+            <select name="sort" onChange={handleSort}>
               <option value="featured" selected>
                 Featured
               </option>
@@ -49,19 +118,18 @@ const MobileHome = () => {
             </select>
           </div>
           <div className={style.filterSelectBox}>
-            <select name="headphoneType">
+            <select name="headphoneType" onChange={handleFilterChange}>
               <option value="" disabled selected hidden>
                 Headphone type
               </option>
               <option value="featured">Featured</option>
-              <option value="inEarHeadphone">In-ear headphone</option>
-              <option value="onEarHeadphobe">On-ear headphobe</option>
+              <option value="In ear">In-ear headphone</option>
+              <option value="On ear">On-ear headphobe</option>
 
-              <option value="overEarHeadphone">Over-ear headphone</option>
-              <img src="../../assets/dropDown.svg" alt="" />
+              <option value="Over ear">Over-ear headphone</option>
             </select>
 
-            <select name="company">
+            <select name="company" onChange={handleFilterChange}>
               <option value="" disabled selected hidden>
                 Company
               </option>
@@ -73,7 +141,7 @@ const MobileHome = () => {
               <option value="marshall">Marshall</option>
               <option value="ptron">Ptron</option>
             </select>
-            <select name="colour">
+            <select name="colour" onChange={handleFilterChange}>
               <option value="" disabled selected hidden>
                 Colour
               </option>
@@ -83,7 +151,7 @@ const MobileHome = () => {
               <option value="white">White</option>
               <option value="brown">Brown</option>
             </select>
-            <select name="price">
+            <select name="price" onChange={handlePriceFilter}>
               <option value="" disabled selected hidden>
                 Price
               </option>
@@ -99,6 +167,8 @@ const MobileHome = () => {
             <h1 style={{ margin: " auto" }}>
               <b>Loading...</b>
             </h1>
+          ) : product.length === 0 ? (
+            <h1 className={style.noProductFound}>No product found</h1>
           ) : (
             product.map((item, index) => {
               return (

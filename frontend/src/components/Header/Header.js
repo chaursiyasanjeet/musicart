@@ -2,7 +2,9 @@ import style from "./Header.module.css";
 import phoneIcon from "../../assets/phoneIcon.svg";
 import musicIcon from "../../assets/musicIcon.svg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
+  const redirect = useNavigate();
   const [login, setLogin] = useState(
     localStorage.getItem("musicArtToken") ? true : false
   );
@@ -31,7 +33,12 @@ const Header = () => {
           </>
         )}
       </div>
-      <div className={style.mobileHeader}>
+      <div
+        className={style.mobileHeader}
+        onClick={() => {
+          redirect("/");
+        }}
+      >
         <img src={musicIcon} alt="musicIcon" />
         <span>Musicart</span>
       </div>

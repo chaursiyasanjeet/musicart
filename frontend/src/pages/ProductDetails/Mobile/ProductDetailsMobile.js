@@ -3,6 +3,8 @@ import { ToastContainer, toast } from "react-toastify";
 import MobileNavFooter from "../../../components/MobileNavFooter/MobileNavFooter";
 import Header from "../../../components/Header/Header";
 import starImage from "../../../assets/star.svg";
+import next from "../../../assets/next.svg";
+import prev from "../../../assets/prev.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import { getProductDetails, addToCart } from "../../../apis/product";
@@ -12,6 +14,7 @@ const ProductDetailsMobile = () => {
   const { id } = useParams();
   const imgRef = useRef(null);
   const [productDetails, setProductDetails] = useState(null);
+  const [slideCounter, setSlideCounter] = useState(0);
   const [login, setLogin] = useState(
     localStorage.getItem("musicArtToken") ? true : false
   );
@@ -19,6 +22,7 @@ const ProductDetailsMobile = () => {
   useEffect(() => {
     getProductDetails(id).then((data) => {
       setProductDetails(data.data);
+      console.log(imgRef.current.innerHTML);
     });
   }, []);
 
@@ -34,9 +38,16 @@ const ProductDetailsMobile = () => {
     if (result.status === "SUCCESS") {
       toast.success("Added To Cart");
     } else {
-      console.log(result);
       toast.error(result.message);
     }
+  };
+
+  const goToNextImg = () => {
+    slideCounter < 3 ? setSlideCounter(slideCounter + 1) : setSlideCounter(0);
+  };
+
+  const goToPrevImg = () => {
+    slideCounter > 0 ? setSlideCounter(slideCounter - 1) : setSlideCounter(3);
   };
 
   return (
@@ -86,11 +97,46 @@ const ProductDetailsMobile = () => {
           <h1>Loading...</h1>
         ) : (
           <>
-            <div className={style.productImg}>
-              <img src={productDetails.images[0]} alt="headphoneImg" />
-              <img src={productDetails.images[1]} alt="headphoneImg" />
-              <img src={productDetails.images[2]} alt="headphoneImg" />
-              <img src={productDetails.images[3]} alt="headphoneImg" />
+            <div className={style.productImgSlider}>
+              <div className={style.productImages} ref={imgRef}>
+                {productDetails.images.map((item, index) => {
+                  return (
+                    <img
+                      src={item}
+                      alt={`headphoneImg${index}`}
+                      style={{ left: `${index * 100}%` }}
+                    />
+                  );
+                })}
+              </div>
+              <div className={style.imageNoShow}>
+                <img src={prev} alt="previcon" onClick={goToPrevImg} />
+                <div
+                  style={{
+                    backgroundColor:
+                      slideCounter === 0 ? "rgba(46, 0, 82, 1)" : "",
+                  }}
+                ></div>
+                <div
+                  style={{
+                    backgroundColor:
+                      slideCounter === 1 ? "rgba(46, 0, 82, 1)" : "",
+                  }}
+                ></div>
+                <div
+                  style={{
+                    backgroundColor:
+                      slideCounter === 2 ? "rgba(46, 0, 82, 1)" : "",
+                  }}
+                ></div>
+                <div
+                  style={{
+                    backgroundColor:
+                      slideCounter === 3 ? "rgba(46, 0, 82, 1)" : "",
+                  }}
+                ></div>
+                <img src={next} alt="previcon" onClick={goToNextImg} />
+              </div>
             </div>
             <div className={style.porductDetails}>
               <h1 className={style.productTitle}>

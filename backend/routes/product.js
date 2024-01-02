@@ -59,7 +59,6 @@ router.post("/addproduct", async (req, res) => {
       featured,
     });
     await product.save();
-    console.log(req.body);
     res.status(200).json({
       status: 200,
       message: "Product added sucessfully",
@@ -151,7 +150,6 @@ router.get("/productDetails/:id", async (req, res) => {
 
 router.put("/addToCart", isLoggedIn, async (req, res) => {
   try {
-    console.log("hello");
     const { id, quantity, replaceQuantity } = req.body;
     const user = await User.findById(req.userExist._id);
     let newItem = true;

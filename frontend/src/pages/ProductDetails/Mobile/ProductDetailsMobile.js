@@ -52,14 +52,36 @@ const ProductDetailsMobile = () => {
             }}
           />
         </div>
-        <button
-          className={style.buyNowButton}
-          onClick={() => {
-            redirect(`/checkout/${productDetails._id}`);
-          }}
-        >
-          Buy Now
-        </button>
+        {login ? (
+          <button
+            className={style.buyNowButton}
+            onClick={() => {
+              redirect(`/checkout/${productDetails._id}`);
+            }}
+          >
+            Buy Now
+          </button>
+        ) : (
+          <div className={style.buttons}>
+            <div>
+              <span
+                onClick={() => {
+                  redirect("/signin");
+                }}
+              >
+                Login
+              </span>
+              /
+              <span
+                onClick={() => {
+                  redirect("/signup");
+                }}
+              >
+                Sign Up
+              </span>
+            </div>
+          </div>
+        )}
         {productDetails === null ? (
           <h1>Loading...</h1>
         ) : (

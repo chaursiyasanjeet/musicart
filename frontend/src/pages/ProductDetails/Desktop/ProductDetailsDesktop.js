@@ -163,20 +163,23 @@ const ProductDetailsDesktop = () => {
                   </div>
                 ) : (
                   <div className={style.buttons}>
-                    <button
-                      onClick={() => {
-                        redirect("/signin");
-                      }}
-                    >
-                      Login
-                    </button>
-                    <button
-                      onClick={() => {
-                        redirect("/signup");
-                      }}
-                    >
-                      Signup
-                    </button>
+                    <div>
+                      <span
+                        onClick={() => {
+                          redirect("/signin");
+                        }}
+                      >
+                        Login
+                      </span>
+                      /
+                      <span
+                        onClick={() => {
+                          redirect("/signup");
+                        }}
+                      >
+                        Sign Up
+                      </span>
+                    </div>
                   </div>
                 )}
               </div>
